@@ -1,0 +1,170 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage[pdfencoding=unicode]{hyperref}
+\usepackage{biblatex}
+\usepackage[style=german]{csquotes}
+
+\title{}
+\author{Мартин }
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{patition}
+
+A partition on an rela line interval [a,b] is a sequence $x_1,..x_{k}$, such that:
+$$a=t_{1} < .. < t_{k} = b$$
+
+\section{variation}
+given operator $f: [a,b] -> R$, with partition P, define variation of f on P as:
+$$V(f, P) = \sum_{i=1}^{n} |f(t_{i})-f(t_{i-1})|$$
+
+\section{Total Variation}
+Considering a function f with values in range $[a,b] \in R$
+$$V^{b}_{a}=\sup_p \sum_{i=0}^{n_{p}-1} | f(x_{i+1}) - f(x_i) | = \sup_{p} V(f, P)$$
+
+\section{Bounded variation}
+a continuous function f is said to be a of bounded variation(BV) on an interval [a,b] $\subset$ R if the total variation on it if finite:
+$$f \in BV([a,b]) <-> V_a^b(f) < \infty$$
+
+\paragraph{}
+$$BV([a,b]) := \{ f \in C[a,b] | V^{b}_{a}(f) < \infty \}$$
+$$$$
+
+
+\section{refine}:
+	not needed ?
+
+\section{monotone examples}
+	not needed ?
+
+\section{Banach space}
+\paragraph{}
+
+We have to see that $BV[a,b]$ is a Banch Space
+
+\subsection{Lemma for sup-Norm}
+\paragraph{}
+if $f:[a,b] -> R$ is of bounded variation, then f is bounded and:
+
+$$|| f ||_{\infty} \leq |f(a)| + V^{b}_{a}f$$
+
+\paragraph{proof}
+let $a \leq x \leq b$, then:
+$$|f(x)-f(a)| \leq V(f,P) \leq V_a^b(f)$$
+$$|f(x)| \leq |f(a)| + V_a^b(f)$$
+
+\subsection{}
+We will show that $V_{a}^{b}(f)$ is not quite a norm:
+\paragraph{Lemma}
+Let $f, g \in BV[a,b]$ and $c \in R$, then:
+\begin{enumerate}
+  \item $V_a^{b}(f) = 0 <-> f$ is a constant
+  \item $V_a^b(cf) = |c|V_{a}^b$
+  \item $V_a^{b}(f+g) \leq V_{a}^b(f) + V_{a}^b(g) $
+\end{enumerate}
+
+\paragraph{proof}
+\begin{enumerate}
+  \item $V_a^{b}(f) = 0 <-> f$ is a constant
+	
+	obvious
+
+	Question: we can't consider f=0 ?
+  \item $V_a^b(cf) = |c|V_{a}^b$
+	Let P be a partition of [a,b] \\
+	$$V(cf, P) \leq |c|V(f,P) \leq |c|V_a^b(f)$$
+
+  \item $V_a^{b}(f+g) \leq V_{a}^b(f) + V_{a}^b(g) $
+	
+	Let P be a partition \\ 
+	$$V(f+g, P) \leq V(f,P) + V(g, P)$$ \\
+	Lets supreum both sides \\
+	$$V^{b}_a(f+g) \leq V^b_a(f) + V^b_a(g)$$
+\end{enumerate}
+
+\section{BV norm}
+
+\paragraph{}
+We will show that:
+$$||f||_{BV} = f(a) + V_a^b(f)$$
+is a norm on BV[a,b]
+
+\section{Theorem}
+BV[a,b] is complete under $||f||_{BV}$
+
+\section{Question}
+B[a,b] - set of all bounded functions ?
+
+\paragraph{proof}
+Let $(f_n)$ is a Cauchy seq in BV[a,b], then it's also a Cauchy seq in B[a,b]. \\
+
+$(f_n)$ converges to $f \in B[a,b]$ \\
+
+Lets show that $f \in BV[a,b]$ and $||f-f_n||_{BV} ->0$ \\
+
+Let P be a partiotion in [a,b] \\
+
+Let $\varepsilon>0$, there exists an N, such that for all m,n > N: \\
+$$(f_{n}(a)-f_{m}(a)) + (V(f_{n})-V(f_{m}), P) < \varepsilon$$
+
+$$|f_{n}(a)-f(a)|+V(f_n-f, P)= \lim_{m->\infty} \{ |f_{n}(a)-f_m(a)|+V(f_n-f_m, P) \}$$
+
+$$|f_{n}(a)-f(a)|+V(f_n-f, P) \leq \varepsilon, \forall n \geq N$$
+
+This stands true for every partition P in [a,b], so $f_{n}-f \in BV[a,b]$ \\
+
+$$||f_n-f||_{BV} = |f_n(a)-f(a)|+V_a^b(f_n-f) \leq \varepsilon, \forall n \geq N$$
+
+meaning $(f_n)$ converges to $f \in BV[a,b]$ with respect to the $||.||_{BV}$ norm
+
+\section{BV[a,b] is a Banach Space}
+
+\paragraph{} $BV[a,b]$ is a Banach Space with respect to the $||.||_{BV}$ norm:
+
+Considering previous statement:
+$$V^b_a=0 <-> f=const$$
+Implies that:
+$$||f||_{BV}=0<->f=0$$
+
+let $c \in R$ and $f \in BV[a,b]$
+$$||cf||_{BV}=f(ca)+V_a^b(cf)=|c|f(a)+|c|V_a^b(f)=|c|||f||_{BV}$$
+
+$$||f-g||_{BV}=(f-g)(a)+V^b_a(f-g) \leq f(a)-g(a)+V^b_a(f)-V^b_a(g)=||g||_{BV}+||f||_{BV}$$
+
+
+Considering the completeness property from the previous theorem, BV[a,b] is a Banach Space in regards to $||.||_{BV}$
+
+\paragraph{\LARGE Дали следното твърдение е нужно?}
+
+\section{Theorem}
+Let $f \in BV[a,b]$ is a real valued function. Then there exists a monotonically increasing functiong $g:[a,b]->R$ such that both g and $g-f$ are increasing. Consequently, f=g-(g-f) is the difference of two increasing functions.
+
+\paragraph{proof}
+
+For $[a, d] \subseteq [a,b]$ Let $V_c^d(f)$ be the total variation of f on [a,d]. Then it can be verified that for any $t \in [a,b]:$
+$$V_a^b(f)=V_a^t(f)+V_t^b(f)$$
+
+$$\sum_{i=a}^{b} |f(x_{i})-f(x_{i-1})| = \sum_{i=a}^{t} |f(x_{i})-f(x_{i-1})| + \sum_{i=t}^{b} |f(x_{i})-f(x_{i-1})| $$
+
+We apply $\sup_P$ function: \\
+$$\sup_P \sum_{i=a}^{b} |f(x_{i})-f(x_{i-1})| = \sup_P \sum_{i=a}^{t} |f(x_{i})-f(x_{i-1})| + \sup_P \sum_{i=t}^{b} |f(x_{i})-f(x_{i-1})| $$
+
+$$V_a^b(f)=V_a^t(f) + V_t^b(f)$$
+
+Let $ a \leq t \leq s \leq b$
+$$V_a^s(f)-V_a^t(f)=V_t^s(f) \geq |f(s)-f(t)| \geq f(s) - f(t)$$
+
+Then $g(t) := V^t_a(f)$ is monotonically increasing. Then:
+
+$$g(s)-g(t)=V^s_a(f)-V^t_a(f)=V_t^s(f) \geq |f(s)-f(t)| \geq f(s)-f(t)$$
+
+\paragraph{\LARGE Дали ще учим за Банахови Алгебри, дали да го включа?}
+
+\end{document}
+
